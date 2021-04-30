@@ -1,9 +1,12 @@
 package racingcar;
 
+import racingcar.exception.InvalidCarException;
+
 import java.util.Objects;
 
 public class Car {
     static final int CARNAME_VALIDATE_SIZE = 5;
+    static final String INPUT_VALID_NAME = "1 ~ 5자 사이의 이름을 입력해주세요.";
 
     private final String name;
 
@@ -15,7 +18,7 @@ public class Car {
 
     private void validate(final String name) {
         if (name.isEmpty() || name.length() > CARNAME_VALIDATE_SIZE) {
-            throw new IllegalArgumentException("error");
+            throw new InvalidCarException(INPUT_VALID_NAME);
         }
     }
 

@@ -2,26 +2,27 @@ package racingcar;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.exception.InvalidCarException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CarsTest {
 
-    @DisplayName("공백이 하나라도 있으면 Exception이 발생한다")
+    @DisplayName("공백이 하나라도 있으면 InvalidCarException이 발생한다")
     @Test
     void carsBlank() {
         assertThatThrownBy(() -> {
             Cars.of(" pobi ,  , honux,pobi");
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(InvalidCarException.class);
     }
 
-    @DisplayName("6글자 이상인 Car가 하나라도 있으면 Exception이 발생한다")
+    @DisplayName("6글자 이상인 Car가 하나라도 있으면 InvalidCarException이 발생한다")
     @Test
     void carsSizeOver() {
         assertThatThrownBy(() -> {
-            Cars.of(" pobi ,  , honux,pobi");
-        }).isInstanceOf(IllegalArgumentException.class);
+            Cars.of(" pobi , crongg , honux,pobi");
+        }).isInstanceOf(InvalidCarException.class);
     }
 
     @DisplayName("콤마 구분자를 사용해 Car객체들을 담는 Cars 객체를 만들 수 있다")
