@@ -1,14 +1,17 @@
-package racingcar;
+package racingcar.domain;
 
 import racingcar.movestrategy.MoveStrategy;
 import racingcar.movestrategy.RandomlyMove;
 
-public class Car {
+import java.util.Objects;
+
+
+public class Car implements Comparable<Car> {
     static final int ZERO = 0;
 
     private final CarName name;
-    private int distance;
     private final MoveStrategy moveStrategy;
+    private int distance;
 
     private Car(final String name, final int distance, final MoveStrategy moveStrategy) {
         this.name = new CarName(name);
@@ -36,7 +39,38 @@ public class Car {
         if (moveStrategy.canMove()) distance++;
     }
 
+    public String getName() {
+        return this.name.toString();
+    }
+
     public int getDistance() {
         return distance;
     }
+
+    @Override
+    public int compareTo(final Car car) {
+        return car.getDistance() - distance;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return distance == car.distance && name.equals(car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, distance);
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "name=" + name +
+                ", distance=" + distance +
+                '}';
+    }
+
 }
