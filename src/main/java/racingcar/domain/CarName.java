@@ -1,12 +1,13 @@
-package racingcar;
+package racingcar.domain;
 
 import racingcar.exception.InvalidCarNameException;
 
 import java.util.Objects;
 
+import static racingcar.ApplicationContext.CARNAME_VALIDATE_SIZE;
+import static racingcar.view.input.InputMessages.INPUT_VALID_NAME;
+
 public class CarName {
-    static final int CARNAME_VALIDATE_SIZE = 5;
-    static final String INPUT_VALID_NAME = "1 ~ 5자 사이의 이름을 입력해주세요.";
 
     private final String name;
 
@@ -37,5 +38,10 @@ public class CarName {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
