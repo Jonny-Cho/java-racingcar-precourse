@@ -11,10 +11,6 @@ public class Winners {
         this.winners = winners;
     }
 
-    public List<Car> getWinners() {
-        return winners;
-    }
-
     public static Winners getWinners(Cars cars) {
         final List<Car> sortedCars = cars.sortedBy();
         final Car maxCar = findFirst(sortedCars);
@@ -31,11 +27,15 @@ public class Winners {
     }
 
     private static void addToFilteredCars(final List<Car> filteredCars, final Car car, final Car maxCar) {
-        if (car.getDistance() == maxCar.getDistance()) filteredCars.add(car);
+        if (car.isSameDistance(maxCar)) filteredCars.add(car);
     }
 
     private static Car findFirst(final List<Car> cars) {
         return cars.get(FIRST);
+    }
+
+    public List<Car> getWinners() {
+        return winners;
     }
 
     @Override

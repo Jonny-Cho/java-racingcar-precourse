@@ -47,6 +47,12 @@ public class Car implements Comparable<Car> {
         return distance;
     }
 
+
+
+    public boolean isSameDistance(final Car maxCar) {
+        return this.distance == maxCar.getDistance();
+    }
+
     @Override
     public int compareTo(final Car car) {
         return car.getDistance() - distance;
@@ -72,5 +78,4 @@ public class Car implements Comparable<Car> {
                 ", distance=" + distance +
                 '}';
     }
-
 }
