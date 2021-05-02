@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain;
 
 import racingcar.movestrategy.MoveStrategy;
 import racingcar.movestrategy.RandomlyMove;
@@ -16,20 +16,24 @@ public class Cars {
         this.cars = cars;
     }
 
-    static Cars of(final String carNames) {
+    public static Cars of(final String carNames) {
         return of(carNames, new RandomlyMove());
     }
 
-    static Cars of(final String carNames, final MoveStrategy moveStrategy) {
+    public static Cars of(final String carNames, final MoveStrategy moveStrategy) {
         return of(moveStrategy, carNames.split(DELIMITER));
     }
 
-    static Cars of(final MoveStrategy moveStrategy, final String... carNames) {
+    public static Cars of(final MoveStrategy moveStrategy, final String... carNames) {
         return of(Arrays.asList(carNames), moveStrategy);
     }
 
-    static Cars of(final List<String> carNames, final MoveStrategy moveStrategy) {
+    public static Cars of(final List<String> carNames, final MoveStrategy moveStrategy) {
         final List<Car> cars = toCars(carNames, moveStrategy);
+        return of(cars);
+    }
+
+    static Cars of(final List<Car> cars) {
         return new Cars(cars);
     }
 
@@ -50,4 +54,16 @@ public class Cars {
             car.move();
         }
     }
+
+    public List<Car> sortedBy() {
+        final List<Car> newCars = new ArrayList(this.cars);
+        newCars.sort(Car::compareTo);
+        return newCars;
+    }
+
+    @Override
+    public String toString() {
+        return "cars" + cars;
+    }
+
 }

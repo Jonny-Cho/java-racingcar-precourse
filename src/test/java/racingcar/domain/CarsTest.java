@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,6 +40,7 @@ public class CarsTest {
         final Cars cars = Cars.of(" pobi , crong, honux,pobi");
         assertThat(cars).isInstanceOf(Cars.class);
         assertThat(cars.getCars().size()).isEqualTo(4);
+        assertThat(cars.getCars().get(0)).isNotSameAs(cars.getCars().get(3));
     }
 
     @DisplayName("moveAll메서드는 모든 Car를 move시킬 수 있다")
