@@ -3,16 +3,16 @@ package racingcar.controller;
 import racingcar.domain.Cars;
 import racingcar.domain.Winners;
 import racingcar.exception.InvalidCarNameException;
+import racingcar.exception.InvalidValueException;
 import racingcar.movestrategy.MoveStrategy;
+import racingcar.validator.Validator;
 import racingcar.view.input.Input;
 import racingcar.view.output.Output;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 import static racingcar.domain.Cars.DELIMITER;
-import static racingcar.exception.InvalidCarNameException.WRONG_VALUE;
 import static racingcar.view.input.InputMessages.*;
 import static racingcar.view.output.OutputMessages.RESULT_MESSAGE;
 
@@ -51,34 +51,10 @@ public class GameController {
         input.println(PLEASE_INPUT_CAR_NAMES);
         try {
             final List<String> carNames = toList(input.getCarNames().split(DELIMITER));
-            validateCarName(carNames);
+            Validator.validateCarName(carNames);
             return carNames;
-        } catch (final InvalidCarNameException e) {
+        } catch (final InvalidValueException e) {
             return inputCarNames();
-        }
-    }
-
-    private void validateCarName(final List<String> carNames) {
-        validateEmptyList(carNames);
-        validateEmptyElement(carNames);
-    }
-
-    private void validateEmptyElement(final List<String> carNames) {
-        for (final String carName : carNames) {
-            validateBlank(carName);
-        }
-    }
-
-    private void validateBlank(final String carName) {
-        final String trimmedName = carName.trim();
-        if (Objects.isNull(trimmedName) || trimmedName.isEmpty()) {
-            throw new InvalidCarNameException(WRONG_VALUE);
-        }
-    }
-
-    private void validateEmptyList(final List<String> carNames) {
-        if (Objects.isNull(carNames) || carNames.isEmpty()) {
-            throw new InvalidCarNameException(WRONG_VALUE);
         }
     }
 

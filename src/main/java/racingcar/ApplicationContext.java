@@ -9,8 +9,6 @@ import racingcar.view.output.ConsoleOutput;
 import racingcar.view.output.Output;
 
 public class ApplicationContext {
-    public static final int CARNAME_VALIDATE_SIZE = 5;
-
     private final Input input;
     private final Output output;
     private final MoveStrategy moveStrategy;
