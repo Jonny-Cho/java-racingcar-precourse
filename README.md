@@ -31,9 +31,11 @@
 5. View가 Model로부터 데이터를 받을 때, 반드시 Controller에서 받아야한다.
 
 ## 개선하기
-- [ ] 구체화된 Exception을 사용한다.
-- [ ] CarName validate로직에서 View를 의존하고 있다.
+- [x] 구체화된 Exception을 사용한다.
+- [ ] `,,`을 입력했을 때 Exception이 나지 않는다.
+- [ ] CarName validate로직에서 View의존을 없앤다.
 - [ ] cars객체 생성으로 Exception을 잡기 보다 input 검증로직을 별도로 만든다. (view, domain 분리)
+- [ ] Car의 이동 경로를 for문 안에서 출력하기 보다 이동 경로를 담는 객체에 담아놓고 나중에 출력하도록 해보자.
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)

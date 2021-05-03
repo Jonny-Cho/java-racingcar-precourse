@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Cars {
-    static final String DELIMITER = ",";
+    public static final String DELIMITER = ",";
 
     private final List<Car> cars;
 
@@ -39,7 +39,7 @@ public class Cars {
 
     private static List<Car> toCars(final List<String> carNames, final MoveStrategy moveStrategy) {
         final List<Car> cars = new ArrayList<>();
-        for (String name : carNames) {
+        for (final String name : carNames) {
             cars.add(Car.of(name, moveStrategy));
         }
         return cars;
