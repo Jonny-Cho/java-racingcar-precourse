@@ -23,5 +23,17 @@
 - [x] 모든 원시값과 문자열을 포장한다.
 - [x] 단위 테스트를 구현한다.
 
+## MVC를 지키면서 코딩하는 방법
+1. Model은 Controller와 View에 의존하지 않아야 한다.
+2. View는 Model에만 의존해야 하고, Controller에는 의존하면 안된다.
+3. View가 Model로부터 데이터를 받을 때는, 사용자마다 다르게 보여주어야 하는 데이터에 대해서만 받아야한다.
+4. Controller는 Model과 View에 의존해도 된다.
+5. View가 Model로부터 데이터를 받을 때, 반드시 Controller에서 받아야한다.
+
+## 개선하기
+- [ ] 구체화된 Exception을 사용한다.
+- [ ] CarName validate로직에서 View를 의존하고 있다.
+- [ ] cars객체 생성으로 Exception을 잡기 보다 input 검증로직을 별도로 만든다. (view, domain 분리)
+
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
