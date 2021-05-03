@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static racingcar.domain.Cars.DELIMITER;
+import static racingcar.exception.InvalidCarNameException.WRONG_VALUE;
 import static racingcar.view.input.InputMessages.*;
 import static racingcar.view.output.OutputMessages.RESULT_MESSAGE;
 
@@ -71,13 +72,13 @@ public class GameController {
     private void validateBlank(final String carName) {
         final String trimmedName = carName.trim();
         if (Objects.isNull(trimmedName) || trimmedName.isEmpty()) {
-            throw new InvalidCarNameException("입력값 중에 하나라도 빈 값이 될 수는 없습니다.");
+            throw new InvalidCarNameException(WRONG_VALUE);
         }
     }
 
     private void validateEmptyList(final List<String> carNames) {
         if (Objects.isNull(carNames) || carNames.isEmpty()) {
-            throw new InvalidCarNameException("잘못된 입력값입니다.");
+            throw new InvalidCarNameException(WRONG_VALUE);
         }
     }
 
