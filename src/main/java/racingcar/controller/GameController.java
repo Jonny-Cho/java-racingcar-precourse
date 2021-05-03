@@ -31,44 +31,21 @@ public class GameController {
 
     public void start() {
         final Cars cars = getCars();
-        final int tryCount = getTryCount();
+//        final List<String> carNames = input.getCarNames();
+        final int tryCount = input.getTryCount();
+
         race(cars, tryCount);
         final Winners winners = Winners.getWinners(cars);
         output.printWinners(winners);
     }
 
     private Cars getCars() {
-        final List<String> carNames = inputCarNames();
+        final List<String> carNames = input.getCarNames();
         try {
             return Cars.of(carNames, moveStrategy);
         } catch (final InvalidCarNameException e) {
             input.println(e.getMessage());
             return getCars();
-        }
-    }
-
-    private List<String> inputCarNames() {
-        input.println(PLEASE_INPUT_CAR_NAMES);
-        try {
-            final List<String> carNames = toList(input.getCarNames().split(DELIMITER));
-            Validator.validateCarName(carNames);
-            return carNames;
-        } catch (final InvalidValueException e) {
-            return inputCarNames();
-        }
-    }
-
-    private List<String> toList(final String[] strings) {
-        return Arrays.asList(strings);
-    }
-
-    private int getTryCount() {
-        input.println(PLEASE_INPUT_TRY_COUNT);
-        try {
-            return input.getTryCount();
-        } catch (final NumberFormatException e) {
-            input.println(PLEASE_INPUT_NUMBER);
-            return getTryCount();
         }
     }
 

@@ -1,10 +1,12 @@
 package racingcar.view.input;
 
+import java.util.List;
+
 public interface Input {
 
     void println(final String message);
 
-    String getCarNames();
+    List<String> getCarNames();
 
     int getTryCount();
 
