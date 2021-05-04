@@ -19,11 +19,6 @@ public class ConsoleInput implements Input, AutoCloseable {
     }
 
     @Override
-    public void println(final String message) {
-        System.out.println(message);
-    }
-
-    @Override
     public List<String> getCarNames() {
         println(PLEASE_INPUT_CAR_NAMES);
         try {
@@ -46,13 +41,17 @@ public class ConsoleInput implements Input, AutoCloseable {
         }
     }
 
-    private int inputTryCount() {
-        return Integer.parseInt(scanner.nextLine());
-    }
-
     @Override
     public void close() {
         scanner.close();
+    }
+
+    private void println(final String message) {
+        System.out.println(message);
+    }
+
+    private int inputTryCount() {
+        return Integer.parseInt(scanner.nextLine());
     }
 
     private List<String> toList(final String[] strings) {

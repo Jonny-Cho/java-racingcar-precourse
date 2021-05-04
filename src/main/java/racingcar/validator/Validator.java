@@ -14,7 +14,7 @@ public class Validator {
 
     public static void validateCarName(final String name) {
         final String trimmedName = name.trim();
-        if (Objects.isNull(trimmedName) || name.isEmpty() || name.length() > CARNAME_VALIDATE_SIZE) {
+        if (Objects.isNull(trimmedName) || trimmedName.isEmpty() || trimmedName.length() > CARNAME_VALIDATE_SIZE) {
             throw new InvalidCarNameException(INPUT_VALID_NAME);
         }
     }
