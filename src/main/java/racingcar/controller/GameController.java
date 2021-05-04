@@ -1,20 +1,13 @@
 package racingcar.controller;
 
-import racingcar.domain.Cars;
+import racingcar.domain.Route;
 import racingcar.domain.Winners;
-import racingcar.exception.InvalidCarNameException;
-import racingcar.exception.InvalidValueException;
 import racingcar.movestrategy.MoveStrategy;
-import racingcar.validator.Validator;
+import racingcar.service.RacingGame;
 import racingcar.view.input.Input;
 import racingcar.view.output.Output;
 
-import java.util.Arrays;
 import java.util.List;
-
-import static racingcar.domain.Cars.DELIMITER;
-import static racingcar.view.input.InputMessages.*;
-import static racingcar.view.output.OutputMessages.RESULT_MESSAGE;
 
 public class GameController {
     public static final int ZERO = 0;
@@ -30,31 +23,12 @@ public class GameController {
     }
 
     public void start() {
-        final Cars cars = getCars();
-//        final List<String> carNames = input.getCarNames();
-        final int tryCount = input.getTryCount();
-
-        race(cars, tryCount);
-        final Winners winners = Winners.getWinners(cars);
-        output.printWinners(winners);
-    }
-
-    private Cars getCars() {
         final List<String> carNames = input.getCarNames();
-        try {
-            return Cars.of(carNames, moveStrategy);
-        } catch (final InvalidCarNameException e) {
-            input.println(e.getMessage());
-            return getCars();
-        }
-    }
-
-    private void race(final Cars cars, final int count) {
-        output.println(RESULT_MESSAGE);
-        for (int i = ZERO; i < count; i++) {
-            cars.moveAll();
-            output.printRacingResult(cars);
-        }
+        final int tryCount = input.getTryCount();
+        final Route carRoute = RacingGame.race(carNames, tryCount, moveStrategy);
+        final Winners winners = Winners.getWinners(carRoute);
+        output.printRoute(carRoute);
+        output.printWinners(winners);
     }
 
 }
