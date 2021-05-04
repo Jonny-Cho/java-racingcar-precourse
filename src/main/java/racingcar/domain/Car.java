@@ -5,7 +5,6 @@ import racingcar.movestrategy.RandomlyMove;
 
 import java.util.Objects;
 
-
 public class Car implements Comparable<Car> {
     static final int ZERO = 0;
 
@@ -19,19 +18,19 @@ public class Car implements Comparable<Car> {
         this.moveStrategy = moveStrategy;
     }
 
-    static Car of(final String name) {
+    public static Car of(final String name) {
         return of(name, ZERO);
     }
 
-    static Car of(final String name, final int distance) {
+    public static Car of(final String name, final int distance) {
         return of(name, distance, new RandomlyMove());
     }
 
-    static Car of(final String name, final MoveStrategy moveStrategy) {
+    public static Car of(final String name, final MoveStrategy moveStrategy) {
         return new Car(name, ZERO, moveStrategy);
     }
 
-    static Car of(final String name, final int distance, final MoveStrategy moveStrategy) {
+    public static Car of(final String name, final int distance, final MoveStrategy moveStrategy) {
         return new Car(name, distance, moveStrategy);
     }
 
@@ -47,10 +46,12 @@ public class Car implements Comparable<Car> {
         return distance;
     }
 
-
-
     public boolean isSameDistance(final Car maxCar) {
         return this.distance == maxCar.getDistance();
+    }
+
+    public Car cloneCar() {
+        return new Car(this.name.getName(), this.distance, moveStrategy);
     }
 
     @Override

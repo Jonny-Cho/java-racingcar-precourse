@@ -11,9 +11,11 @@ public class Cars {
     public static final String DELIMITER = ",";
 
     private final List<Car> cars;
+    private final MoveStrategy moveStrategy;
 
-    private Cars(final List<Car> cars) {
+    public Cars(final List<Car> cars, final MoveStrategy moveStrategy) {
         this.cars = cars;
+        this.moveStrategy = moveStrategy;
     }
 
     public static Cars of(final String carNames) {
@@ -30,11 +32,7 @@ public class Cars {
 
     public static Cars of(final List<String> carNames, final MoveStrategy moveStrategy) {
         final List<Car> cars = toCars(carNames, moveStrategy);
-        return of(cars);
-    }
-
-    static Cars of(final List<Car> cars) {
-        return new Cars(cars);
+        return new Cars(cars, moveStrategy);
     }
 
     private static List<Car> toCars(final List<String> carNames, final MoveStrategy moveStrategy) {
@@ -47,6 +45,14 @@ public class Cars {
 
     public List<Car> getCars() {
         return cars;
+    }
+
+    public List<Car> cloneCars() {
+        final List<Car> newCars = new ArrayList<>();
+        for (final Car car : cars) {
+            newCars.add(car.cloneCar());
+        }
+        return newCars;
     }
 
     public void moveAll() {
