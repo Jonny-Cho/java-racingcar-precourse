@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Winners {
+    public static final int ONE = 1;
     private static final int FIRST = 0;
     private final List<Car> winners;
 
@@ -11,7 +12,17 @@ public class Winners {
         this.winners = winners;
     }
 
-    public static Winners getWinners(Cars cars) {
+    public static Winners getWinners(final Route route) {
+        final Cars cars = getLastCars(route);
+        return getWinners(cars);
+    }
+
+    private static Cars getLastCars(final Route route) {
+        final List<Cars> carRoutes = route.getCarRoutes();
+        return carRoutes.get(carRoutes.size() - ONE);
+    }
+
+    public static Winners getWinners(final Cars cars) {
         final List<Car> sortedCars = cars.sortedBy();
         final Car maxCar = findFirst(sortedCars);
         final List<Car> filteredCars = filter(sortedCars, maxCar);

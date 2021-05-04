@@ -39,8 +39,8 @@
 - [x] 사용하지 않는 메서드 및 format등을 수정한다.
 - [x] Car의 이동 경로를 for문 안에서 출력하기 보다 이동 경로를 담는 객체에 담아놓고 나중에 출력하도록 해보자.
 - [x] race를 Controller가 아닌 Service 레이어가 하도록 변경한다.
-- [ ] Winners를 구하는 메서드를 수정한다.
-- [ ] 테스트 코드를 추가한다.
+- [x] Winners를 구하는 메서드를 수정한다.
+- [x] 테스트 코드를 추가한다.
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
